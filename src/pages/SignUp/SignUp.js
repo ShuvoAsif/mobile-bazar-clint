@@ -8,7 +8,7 @@ import { AuthContext } from '../../context/AuthProvider';
 const SignUp = () => {
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, providerLogin, setUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('');
     const googleProvider = new GoogleAuthProvider()
@@ -43,6 +43,7 @@ const SignUp = () => {
                 console.log(error)
                 setSignUPError(error.message)
             });
+
     }
 
     return (
@@ -57,6 +58,14 @@ const SignUp = () => {
                             <input type="text" {...register("name", {
                                 required: "Name is Required"
                             })} className="input input-bordered w-full max-w-xs" />
+                            {errors.name && <p className='text-red-700'>{errors.name.message}</p>}
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">Role</span></label>
+                            <select {...register("role")} className="input input-bordered w-full max-w-xs">
+                                <option value="seller">Seller</option>
+                                <option value="buyer">Buyer</option>
+                            </select>
                             {errors.name && <p className='text-red-700'>{errors.name.message}</p>}
                         </div>
                         <div className="form-control w-full max-w-xs">
