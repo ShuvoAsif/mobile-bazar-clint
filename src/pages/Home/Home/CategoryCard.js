@@ -12,7 +12,7 @@ const CategoryCard = ({ category }) => {
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <div className="card-actions justify-end">
-                        <Link to={`/details/${cat_id}`}>
+                        <Link to={`/mobiles/${cat_id}`}>
                             <button className="btn">View Details</button>
                         </Link>
                     </div>
