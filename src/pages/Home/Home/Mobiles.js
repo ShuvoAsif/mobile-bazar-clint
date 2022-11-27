@@ -5,7 +5,7 @@ import MobileCard from './MobileCard';
 const Mobiles = () => {
     const mobiles = useLoaderData();
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-3">'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 bg-zinc-300'>
             {
                 mobiles.map(mobile => <MobileCard
                     key={mobile._id}

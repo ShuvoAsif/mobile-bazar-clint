@@ -14,7 +14,7 @@ const Category = () => {
 
 
     return (
-        <div className='bg-zinc-100 pb-3'>
+        <div className=' bg-zinc-300 py-11'>
             <div className='text-center pb-5 pt-3'>
                 <p className="text-3xl font-bold">Mobile Categories</p>
             </div>

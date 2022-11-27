@@ -1,12 +1,14 @@
 import React from 'react';
 import verify from '../../../images/check.png'
 
-const MobileCard = ({ mobile }) => {
+const AddCard = ({ addmobile }) => {
 
-    const { image, name, seller, location, resale_price, orginal_price, use_time, posted_time } = mobile;
+    const { image, name, seller, location, resale_price, orginal_price, use_time, posted_time } = addmobile;
+
 
     return (
         <div>
+
             <div className="card card-side bg-base-100 shadow-xl">
                 <figure><img src={image} alt="Movie" className='bg-contain' /></figure>
                 <div className="card-body">
@@ -34,4 +36,4 @@ const MobileCard = ({ mobile }) => {
     );
 };
 
-export default MobileCard;
+export default AddCard;
