@@ -2,16 +2,27 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
 
-
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser, providerLogin, setUser, updateUser } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const { createUser, providerLogin, setUser, updateUser } = useContext(AuthContext);
+    const [token] = useToken(createdUserEmail);
+    const navigate = useNavigate();
+
+
     const googleProvider = new GoogleAuthProvider()
+
+
+
+    if (token) {
+        navigate('/');
+    }
 
 
     const handleGoogleSignIn = () => {
@@ -20,6 +31,16 @@ const SignUp = () => {
                 const user = result.user;
                 setUser(user);
                 console.log(user);
+                toast('Your Account Created Successfully.')
+                const userInfo = {
+                    displayName: user.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        const role = "buyer";
+                        saveUser(user.name, user.email, role);
+                    })
+                    .catch(err => console.log(err));
             })
             .catch(error => console.error(error))
     }
@@ -36,7 +57,9 @@ const SignUp = () => {
                     displayName: data.name
                 }
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => {
+                        saveUser(data.name, data.email, data.role);
+                    })
                     .catch(err => console.log(err));
             })
             .catch(error => {
@@ -46,9 +69,27 @@ const SignUp = () => {
 
     }
 
+
+
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
+            })
+    }
+
+
+
     return (
         <div>
-
             <div className='h-[800px] flex justify-center items-center'>
                 <div className='w-96 p-7'>
                     <h2 className='text-xl text-center'>Sign Up</h2>
@@ -63,8 +104,8 @@ const SignUp = () => {
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Role</span></label>
                             <select {...register("role")} className="input input-bordered w-full max-w-xs">
-                                <option value="seller">Seller</option>
                                 <option value="buyer">Buyer</option>
+                                <option value="seller">Seller</option>
                             </select>
                             {errors.name && <p className='text-red-700'>{errors.name.message}</p>}
                         </div>

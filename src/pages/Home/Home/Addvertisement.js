@@ -16,9 +16,15 @@ const Addvertisement = () => {
 
     return (
         <div className='bg-zinc-100 pb-3'>
+
+
+
             {
                 addmobiles ?
-                    <h1 className="text-4xl py-5 text-center font-bold">Advertised Items</h1>
+                    <div>
+                        <h1 className="text-4xl py-5 text-center font-bold">Advertised Items</h1>
+                        <h1 className="text-3xl py-5 text-center font-bold">Get discount On this products</h1>
+                    </div>
                     :
                     <></>
             }
