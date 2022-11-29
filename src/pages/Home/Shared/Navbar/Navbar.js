@@ -6,8 +6,6 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
-
-
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -18,6 +16,15 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/appointment">Appointment</Link></li>
         <li><Link to="/about">About</Link></li>
+    </React.Fragment>
+
+    const dashboardItem = <React.Fragment>
+        <li><Link to="/myorders">My Orders</Link></li>
+        <li><Link to="/myproducts">My Products</Link></li>
+        <li><Link to="/addaproduct">Add A Product</Link></li>
+        <li><Link to="/allseller">All Sellers</Link></li>
+        <li><Link to="/allbuyres">ALL Buyers</Link></li>
+        <li><Link to="/reporteditems">Reported Items</Link></li>
     </React.Fragment>
 
     return (
@@ -39,13 +46,21 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <div className="dropdown  dropdown-end">
+                    <label tabIndex={0} className="px-3">Dashboard</label>
+                    <ul tabIndex={0} className="menu dropdown-content bg-zinc-500 w-52 mt-3">
+                        {dashboardItem}
+                    </ul>
+                </div>
+
                 <Link to="/login">
                     {
                         user ?
                             <li className="btn" onClick={handleLogOut}><Link to='/login'>Log out</Link></li>
                             :
                             <li className="btn"><Link to='/login'>Log in</Link></li>
-                    }</Link>
+                    }
+                </Link>
             </div>
         </div>
     );
