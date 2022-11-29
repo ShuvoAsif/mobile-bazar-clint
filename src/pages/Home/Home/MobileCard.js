@@ -1,9 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import verify from '../../../images/check.png'
 
 const MobileCard = ({ mobile }) => {
 
-    const { image, name, seller, location, resale_price, orginal_price, use_time, posted_time } = mobile;
+    const { image, name, seller, location, resale_price, orginal_price, use_time, posted_time, seller_mail } = mobile;
+
+
+    const url = `http://localhost:5000/userinfo?email=${seller_mail}`;
+
+    const { data: sellerinfo = {} } = useQuery({
+        queryKey: ['userinfo', seller_mail],
+        queryFn: async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
+        }
+    })
+
 
     return (
         <div>
@@ -19,14 +33,14 @@ const MobileCard = ({ mobile }) => {
                         <div><p>Used of Years: {use_time}</p></div><div>Posted Time:{posted_time}</div>
                     </div>
                     <div className='flex'>
-                        <h2>Seller's Name: {seller}</h2>
+                        <h2>Seller's Name: {seller} </h2>
                         <div className="avatar">
-                            <div className="w-5 h-5 rounded-full">
-                                <img src={verify} alt='' />
+                            <div className="w-5 h-5 mx-1 rounded-full">
+                                {sellerinfo.verify === true && <img src={verify} alt='' />}
                             </div>
                         </div></div>
                     <div className="card-actions justify-end">
-                        <button className="btn">Details</button>
+                        <button className="btn">Book Now</button>
                     </div>
                 </div>
             </div>

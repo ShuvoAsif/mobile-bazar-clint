@@ -14,7 +14,7 @@ const Navbar = () => {
 
     const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link to="/blog">Blogs</Link></li>
         <li><Link to="/about">About</Link></li>
     </React.Fragment>
 
@@ -28,7 +28,7 @@ const Navbar = () => {
     </React.Fragment>
 
     return (
-        <div className="navbar bg-zinc-500 text-white">
+        <div className="navbar py-5 bg-sky-900  text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -48,7 +48,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 <div className="dropdown  dropdown-end">
                     <label tabIndex={0} className="px-3">Dashboard</label>
-                    <ul tabIndex={0} className="menu dropdown-content bg-zinc-500 w-52 mt-3">
+                    <ul tabIndex={0} className="menu dropdown-content bg-sky-900  w-52 mt-3">
                         {dashboardItem}
                     </ul>
                 </div>
@@ -56,9 +56,9 @@ const Navbar = () => {
                 <Link to="/login">
                     {
                         user ?
-                            <li className="btn" onClick={handleLogOut}><Link to='/login'>Log out</Link></li>
+                            <li className="btn btn-secondary" onClick={handleLogOut}><Link to='/login'>Log out</Link></li>
                             :
-                            <li className="btn"><Link to='/login'>Log in</Link></li>
+                            <li className="btn btn-secondary"><Link to='/login'>Log in</Link></li>
                     }
                 </Link>
             </div>

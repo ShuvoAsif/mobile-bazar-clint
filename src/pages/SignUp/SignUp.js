@@ -104,7 +104,7 @@ const SignUp = () => {
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Role</span></label>
                             <select {...register("role")} className="input input-bordered w-full max-w-xs">
-                                <option value="buyer">Buyer</option>
+                                <option value="buyer">User</option>
                                 <option value="seller">Seller</option>
                             </select>
                             {errors.name && <p className='text-red-700'>{errors.name.message}</p>}

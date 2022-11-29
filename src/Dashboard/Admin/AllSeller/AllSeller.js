@@ -33,8 +33,20 @@ const AllSeller = () => {
     }
 
 
-    const handleVerify = id => {
-
+    const handleVarify = user => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Verified successful.')
+                    refetch();
+                }
+            })
     }
 
     return (
@@ -57,7 +69,7 @@ const AllSeller = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name ? user.name : <>Registered Whitout Name</>}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.verify !== true && <button onClick={() => handleVerify(user._id)} className='btn btn-xs btn-info'>Verify</button>}{user?.verify === true && <button className='btn btn-xs disabled btn-success'>Verified</button>}</td>
+                                <td>{user?.verify !== true && <button onClick={() => handleVarify(user)} className='btn btn-xs btn-info'>Verify</button>}{user?.verify === true && <button className='btn btn-xs  btn-success'>Verified</button>}</td>
                                 <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user)} className='btn btn-xs btn-error'>Delete This Seller</button>}</td>
                             </tr>)
                         }
