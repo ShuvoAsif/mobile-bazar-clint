@@ -22,7 +22,7 @@ const Navbar = () => {
         <li><Link to="/myorders">My Orders</Link></li>
         <li><Link to="/myproducts">My Products</Link></li>
         <li><Link to="/addaproduct">Add A Product</Link></li>
-        <li><Link to="/allseller">All Sellers</Link></li>
+        <li><Link to="/allsellers">All Sellers</Link></li>
         <li><Link to="/allbuyers">ALL Buyers</Link></li>
         <li><Link to="/reporteditems">Reported Items</Link></li>
     </React.Fragment>

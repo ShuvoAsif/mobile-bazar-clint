@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import AllBuyer from '../Dashboard/Admin/AllBuyer/AllBuyer';
+import AllSeller from '../Dashboard/Admin/AllSeller/AllSeller';
 import Main from '../layout/Main';
 import Home from '../pages/Home/Home/Home';
 import Mobiles from '../pages/Home/Home/Mobiles';
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: '/allbuyers',
                 element: <AllBuyer></AllBuyer>
+            },
+            {
+                path: '/allsellers',
+                element: <AllSeller></AllSeller>
             },
             {
                 path: '/mobiles/:id',

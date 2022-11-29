@@ -56,9 +56,9 @@ const SignUp = () => {
                 const userInfo = {
                     displayName: data.name
                 }
+                saveUser(data.name, data.email, data.role);
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, data.role);
                     })
                     .catch(err => console.log(err));
             })
