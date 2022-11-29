@@ -14,21 +14,22 @@ const AllSeller = () => {
         }
     });
 
-    const handleDeletUser = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
-            method: 'PUT',
+
+
+    const handleDeletUser = user => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
-                    toast.success('Make admin successful.')
+                if (data.deletedCount > 0) {
                     refetch();
+                    toast.success(`Seller ${user.name} deleted successfully`)
                 }
             })
-
     }
 
 
@@ -57,7 +58,7 @@ const AllSeller = () => {
                                 <td>{user.name ? user.name : <>Registered Whitout Name</>}</td>
                                 <td>{user.email}</td>
                                 <td>{user?.verify !== true && <button onClick={() => handleVerify(user._id)} className='btn btn-xs btn-info'>Verify</button>}{user?.verify === true && <button className='btn btn-xs disabled btn-success'>Verified</button>}</td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user._id)} className='btn btn-xs btn-error'>Delete This Seller</button>}</td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user)} className='btn btn-xs btn-error'>Delete This Seller</button>}</td>
                             </tr>)
                         }
 

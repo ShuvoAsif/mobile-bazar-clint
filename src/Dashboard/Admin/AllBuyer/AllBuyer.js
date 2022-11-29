@@ -14,18 +14,18 @@ const AllBuyer = () => {
         }
     });
 
-    const handleDeletUser = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
-            method: 'PUT',
+    const handleDeletUser = user => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
-                    toast.success('Make admin successful.')
+                if (data.deletedCount > 0) {
                     refetch();
+                    toast.success(`Buyer ${user.name} deleted successfully`)
                 }
             })
     }
@@ -48,7 +48,7 @@ const AllBuyer = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name ? user.name : <>Registered Whitout Name</>}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user._id)} className='btn btn-xs btn-error'>Delete This Buyer</button>}</td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user)} className='btn btn-xs btn-error'>Delete This Buyer</button>}</td>
                             </tr>)
                         }
 
