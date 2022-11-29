@@ -7,7 +7,6 @@ import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
-
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn, providerLogin, setUser } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
@@ -17,9 +16,7 @@ const Login = () => {
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider()
 
-
     const from = location.state?.from?.pathname || '/';
-
 
     if (token) {
         navigate(from, { replace: true });

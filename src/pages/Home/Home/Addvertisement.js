@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import AddCard from './AddCard';
 
 const Addvertisement = () => {
-
-
     const [addmobiles, setaddmobiles] = useState([]);
 
     useEffect(() => {

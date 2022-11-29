@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import AllBuyer from '../Dashboard/Admin/AllBuyer/AllBuyer';
 import Main from '../layout/Main';
 import Home from '../pages/Home/Home/Home';
 import Mobiles from '../pages/Home/Home/Mobiles';
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/allbuyers',
+                element: <AllBuyer></AllBuyer>
             },
             {
                 path: '/mobiles/:id',
