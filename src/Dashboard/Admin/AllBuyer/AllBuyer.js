@@ -31,7 +31,7 @@ const AllBuyer = () => {
     }
     return (
         <div className='m-5'>
-            <h2 className="text-3xl text-center">All Buyers</h2>
+            <h2 className="text-3xl p-3 font-bold text-center">All Buyers</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -48,7 +48,7 @@ const AllBuyer = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name ? user.name : <>Registered Whitout Name</>}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user._id)} className='btn btn-xs btn-danger'>Delete This Buyer</button>}</td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user._id)} className='btn btn-xs btn-error'>Delete This Buyer</button>}</td>
                             </tr>)
                         }
 

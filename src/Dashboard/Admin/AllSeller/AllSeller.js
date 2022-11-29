@@ -30,9 +30,15 @@ const AllSeller = () => {
             })
 
     }
+
+
+    const handleVerify = id => {
+
+    }
+
     return (
         <div className='m-5'>
-            <h2 className="text-3xl text-center">All Sellers</h2>
+            <h2 className="text-3xl p-3 font-bold text-center">All Sellers</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -40,6 +46,7 @@ const AllSeller = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Verify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -49,7 +56,8 @@ const AllSeller = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name ? user.name : <>Registered Whitout Name</>}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user._id)} className='btn btn-xs btn-danger'>Delete This Seller</button>}</td>
+                                <td>{user?.verify !== true && <button onClick={() => handleVerify(user._id)} className='btn btn-xs btn-info'>Verify</button>}{user?.verify === true && <button className='btn btn-xs disabled btn-success'>Verified</button>}</td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleDeletUser(user._id)} className='btn btn-xs btn-error'>Delete This Seller</button>}</td>
                             </tr>)
                         }
 
