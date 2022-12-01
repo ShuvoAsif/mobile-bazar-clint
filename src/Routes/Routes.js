@@ -2,7 +2,9 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import AllBuyer from '../Dashboard/Admin/AllBuyer/AllBuyer';
 import AllSeller from '../Dashboard/Admin/AllSeller/AllSeller';
+import ReportedItems from '../Dashboard/Admin/ReportedItems/ReportedItems';
 import AddAProducts from '../Dashboard/Seller/AddAProduct/AddAProducts';
+import MyProducts from '../Dashboard/Seller/MyProducts/MyProducts';
 import Main from '../layout/Main';
 import Blog from '../pages/Blog/Blog';
 import Home from '../pages/Home/Home/Home';
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
             {
                 path: '/allsellers',
                 element: <AllSeller></AllSeller>
+            },
+            {
+                path: '/myproducts',
+                element: <MyProducts></MyProducts>
+            },
+            {
+                path: '/reporteditems',
+                element: <ReportedItems></ReportedItems>
             },
             {
                 path: '/addaproduct',

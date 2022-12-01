@@ -40,41 +40,44 @@ const AddAProducts = () => {
                 if (imgData.success) {
                     console.log(imgData.data.url);
                 }
-            });
-        const product = {
-            name: name,
-            seller: user?.name,
-            catrgory,
-            condition,
-            phoneNumber,
-            purchaseYear,
-            location,
-            image,
-            resale_price,
-            oigial_price,
-            use_time,
-            posted_time,
-            seller_mail: user?.email,
-            description
-        }
 
-        /*
-         fetch('http://localhost:5000/addmobiles', {
-             method: 'POST',
-             headers: {
-                 'content-type': 'application/json',
-                 authorization: `bearer ${localStorage.getItem('accessToken')}`
-             },
-             body: JSON.stringify(product)
-         })
-             .then(res => res.json())
-             .then(result => {
-                 console.log(result);
-                 toast.success(`${product.name} is added successfully`);
-                 Navigate('/')
-             })
-             */
-        console.log(product)
+                const product = {
+                    name: name,
+                    seller: user?.name,
+                    catrgory,
+                    condition,
+                    phoneNumber,
+                    purchaseYear,
+                    location,
+                    image,
+                    resale_price,
+                    oigial_price,
+                    use_time,
+                    posted_time,
+                    seller_mail: user?.email,
+                    description
+                }
+
+
+                /*
+                 fetch('http://localhost:5000/addmobiles', {
+                     method: 'POST',
+                     headers: {
+                         'content-type': 'application/json',
+                         authorization: `bearer ${localStorage.getItem('accessToken')}`
+                     },
+                     body: JSON.stringify(product)
+                 })
+                     .then(res => res.json())
+                     .then(result => {
+                         console.log(result);
+                         toast.success(`${product.name} is added successfully`);
+                         Navigate('/')
+                     })
+                     */
+                console.log(product)
+
+            });
 
 
     }

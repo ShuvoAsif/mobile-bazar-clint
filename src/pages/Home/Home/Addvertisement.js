@@ -5,7 +5,7 @@ const Addvertisement = () => {
     const [addmobiles, setaddmobiles] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/addmobiles')
+        fetch('http://localhost:5000/advertisemobiles')
             .then(res => res.json())
             .then(data => setaddmobiles(data));
     }, [])
