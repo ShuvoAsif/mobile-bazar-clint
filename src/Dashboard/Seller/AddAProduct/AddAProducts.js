@@ -57,7 +57,8 @@ const AddAProducts = () => {
                     use_time,
                     posted_time,
                     seller_mail: user?.email,
-                    description
+                    description,
+                    reported: false
                 }
 
 

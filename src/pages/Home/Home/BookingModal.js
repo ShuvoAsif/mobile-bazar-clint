@@ -4,7 +4,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 
 const BookingModal = ({ product, setProduct }) => {
     const { user } = useContext(AuthContext);
-    const { _id, name, seller, resale_price } = product;
+    const { _id, name, seller, image, resale_price } = product;
 
     const handleBooking = event => {
         event.preventDefault();
@@ -16,34 +16,35 @@ const BookingModal = ({ product, setProduct }) => {
         const booking = {
             productid: _id,
             buyerName,
+            product: name,
             email,
             phone,
             location,
-
-
+            image: image,
+            isPaid: false
         }
 
-        /*
-                fetch('http://localhost:5000/bookings', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(booking)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.acknowledged) {
-                            toast.success('Booking confirmed');
-                        }
-                        else {
-                            toast.error(data.message);
-                        }
-                    })
-        
-        */
-        setProduct(null);
+
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setProduct(null);
+                    toast.success('Booking confirmed');
+                }
+                else {
+                    toast.error(data.message);
+                }
+            })
+
+
     }
 
     return (
@@ -59,8 +60,8 @@ const BookingModal = ({ product, setProduct }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name="buyername" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="buyeremail" type="email" defaultValue={user.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
-                        <input name="buyerphone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
-                        <input name="buyerlocation" type="text" placeholder="Meating Location" className="input w-full input-bordered" />
+                        <input name="buyerphone" type="text" placeholder="Phone Number" className="input w-full input-bordered" required />
+                        <input name="buyerlocation" type="text" placeholder="Meating Location" className="input w-full input-bordered" required />
                         <br />
                         <input className='btn btn-secondary w-full' type="submit" value="Submit" />
                     </form>

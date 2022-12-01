@@ -19,7 +19,7 @@ const Navbar = () => {
     </React.Fragment>
 
     const dashboardItem = <React.Fragment>
-        <li><Link to="/dashboard/myorders">My Orders</Link></li>
+        <li><Link to="/dashboard/myorder">My Orders</Link></li>
         <li><Link to="/dashboard/myproducts">My Products</Link></li>
         <li><Link to="/dashboard/addaproduct">Add A Product</Link></li>
         <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
