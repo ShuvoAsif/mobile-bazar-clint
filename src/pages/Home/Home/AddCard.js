@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import verify from '../../../images/check.png'
 
-const AddCard = ({ addmobile }) => {
+const AddCard = ({ addmobile, setProduct }) => {
 
     const { image, name, seller, location, resale_price, orginal_price, use_time, posted_time, seller_mail } = addmobile;
 
@@ -40,7 +40,11 @@ const AddCard = ({ addmobile }) => {
                             </div>
                         </div></div>
                     <div className="card-actions justify-end">
-                        <button className="btn">Details</button>
+                        <label
+                            onClick={() => setProduct(addmobile)}
+                            htmlFor="booking-modal"
+                            className="btn"
+                        >Book Now</label>
                     </div>
                 </div>
             </div>

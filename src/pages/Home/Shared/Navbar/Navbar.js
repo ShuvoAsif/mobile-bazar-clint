@@ -19,12 +19,12 @@ const Navbar = () => {
     </React.Fragment>
 
     const dashboardItem = <React.Fragment>
-        <li><Link to="/myorders">My Orders</Link></li>
-        <li><Link to="/myproducts">My Products</Link></li>
-        <li><Link to="/addaproduct">Add A Product</Link></li>
-        <li><Link to="/allsellers">All Sellers</Link></li>
-        <li><Link to="/allbuyers">ALL Buyers</Link></li>
-        <li><Link to="/reporteditems">Reported Items</Link></li>
+        <li><Link to="/dashboard/myorders">My Orders</Link></li>
+        <li><Link to="/dashboard/myproducts">My Products</Link></li>
+        <li><Link to="/dashboard/addaproduct">Add A Product</Link></li>
+        <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
+        <li><Link to="/dashboard/allbuyers">ALL Buyers</Link></li>
+        <li><Link to="/dashboard/reporteditems">Reported Items</Link></li>
     </React.Fragment>
 
     return (
