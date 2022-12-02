@@ -2,7 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useToken from '../../hooks/useToken';
 
@@ -14,15 +14,19 @@ const SignUp = () => {
     const { createUser, providerLogin, setUser, updateUser } = useContext(AuthContext);
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+    const location = useLocation();
+
 
 
     const googleProvider = new GoogleAuthProvider()
 
-
+    const from = location.state?.from?.pathname || '/';
 
     if (token) {
-        navigate('/');
+        navigate(from, { replace: true });
     }
+
+
 
 
     const handleGoogleSignIn = () => {
@@ -73,7 +77,7 @@ const SignUp = () => {
     const saveUser = (name, email, role) => {
         const verify = false
         const user = { name, email, role, verify };
-        fetch('http://localhost:5000/users', {
+        fetch('https://mobile-resale-server-seven.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

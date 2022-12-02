@@ -15,7 +15,7 @@ const CheckoutForm = ({ productinfo }) => {
     const price = parseInt(resale_price);
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://mobile-resale-server-seven.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const CheckoutForm = ({ productinfo }) => {
                 email,
                 bookingId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://mobile-resale-server-seven.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -97,7 +97,7 @@ const CheckoutForm = ({ productinfo }) => {
 
 
 
-            fetch(`http://localhost:5000/booking/${productid}`, {
+            fetch(`https://mobile-resale-server-seven.vercel.app/booking/${productid}`, {
                 method: 'PUT',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -111,7 +111,7 @@ const CheckoutForm = ({ productinfo }) => {
 
 
 
-            fetch(`http://localhost:5000/mobilesold/${productid}`, {
+            fetch(`https://mobile-resale-server-seven.vercel.app/mobilesold/${productid}`, {
                 method: 'PUT',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

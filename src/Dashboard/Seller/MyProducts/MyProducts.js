@@ -12,7 +12,7 @@ const MyProducts = () => {
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproducts?email=${user?.email}`);
+            const res = await fetch(`https://mobile-resale-server-seven.vercel.app/myproducts?email=${user?.email}`);
             const data = await res.json();
             console.log(data)
             return data;
@@ -21,7 +21,7 @@ const MyProducts = () => {
 
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/mobile/${product._id}`, {
+        fetch(`https://mobile-resale-server-seven.vercel.app/mobile/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const MyProducts = () => {
 
 
     const handleAdvertise = product => {
-        fetch(`http://localhost:5000/mobiles/${product._id}`, {
+        fetch(`https://mobile-resale-server-seven.vercel.app/mobiles/${product._id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

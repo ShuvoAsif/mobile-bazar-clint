@@ -7,7 +7,7 @@ import Loading from '../../../pages/Home/Shared/Loading/Loading';
 
 const MyOrder = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/booking?email=${user.email}`;
+    const url = `https://mobile-resale-server-seven.vercel.app/booking?email=${user.email}`;
 
     const { data: orders = [], isLoading, refetch } = useQuery({
         queryKey: ['orderss', user?.email],
@@ -20,7 +20,7 @@ const MyOrder = () => {
 
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/booking/${product._id}`, {
+        fetch(`https://mobile-resale-server-seven.vercel.app/booking/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

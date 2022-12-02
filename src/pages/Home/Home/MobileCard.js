@@ -8,7 +8,7 @@ const MobileCard = ({ mobile, setProduct }) => {
     const { _id, image, name, seller, location, resale_price, orginal_price, use_time, posted_time, seller_mail } = mobile;
 
 
-    const url = `http://localhost:5000/userinfo?email=${seller_mail}`;
+    const url = `https://mobile-resale-server-seven.vercel.app/userinfo?email=${seller_mail}`;
 
     const { data: sellerinfo = {} } = useQuery({
         queryKey: ['userinfo', seller_mail],
@@ -21,7 +21,7 @@ const MobileCard = ({ mobile, setProduct }) => {
 
 
     const handleReport = () => {
-        fetch(`http://localhost:5000/product/${_id}`, {
+        fetch(`https://mobile-resale-server-seven.vercel.app/product/${_id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

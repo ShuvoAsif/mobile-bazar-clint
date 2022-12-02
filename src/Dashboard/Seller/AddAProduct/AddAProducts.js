@@ -49,7 +49,7 @@ const AddAProducts = () => {
             is_sold: false
         }
 
-        fetch('http://localhost:5000/addmobiles', {
+        fetch('https://mobile-resale-server-seven.vercel.app/addmobiles', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -93,7 +93,7 @@ const AddAProducts = () => {
                     <input name="purchaseYear" type="text" placeholder="Year of Purchase" className="input input-ghost w-full  input-bordered" />
                     <input name="usedYear" type="text" placeholder="Used Of Years" className="input input-ghost w-full  input-bordered" required />
                     <input name="phoneNumber" type="number" placeholder="Phone Number" className="input input-ghost w-full  input-bordered" />
-                    <input name="img" type="link" placeholder="Image" className="input input-ghost w-full  input-bordered" required />
+                    <input name="img" type="link" placeholder="Image Link" className="input input-ghost w-full  input-bordered" required />
                     <input name="location" type="text" placeholder="Location" className="input input-ghost w-full  input-bordered" required />
                     <input name="date" type="date" placeholder="Date" className="input input-ghost w-full  input-bordered" required />
                     <textarea name="description" className="textarea textarea-bordered  h-24 w-full" placeholder="Description" required></textarea>

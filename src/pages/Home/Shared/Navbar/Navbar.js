@@ -10,7 +10,7 @@ const Navbar = () => {
     const { data: users = [] } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/oneuser?email=${user.email}`);
+            const res = await fetch(`https://mobile-resale-server-seven.vercel.app/oneuser?email=${user.email}`);
             const data = await res.json();
             return data;
         }
@@ -33,7 +33,7 @@ const Navbar = () => {
 
 
     const dashboardItem = <React.Fragment>
-        {role?.role === 'buyer' && <li><Link to="/dashboard/myorder">My Orders</Link></li>}
+        {role?.role && <li><Link to="/dashboard/myorder">My Orders</Link></li>}
         {role?.role === 'seller' && <li><Link to="/dashboard/myproducts">My Products</Link></li>}
         {role?.role === 'seller' && <li><Link to="/dashboard/addaproduct">Add A Product</Link></li>}
         {role?.role === 'admin' && <li><Link to="/dashboard/allsellers">All Sellers</Link></li>}
@@ -62,7 +62,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <div className="dropdown  dropdown-end">
-                    <label tabIndex={0} className="px-3">Dashboard</label>
+                    {user?.email && <label tabIndex={0} className="px-3">Dashboard</label>}
                     <ul tabIndex={0} className="menu dropdown-content bg-sky-900  w-52 mt-3">
                         {dashboardItem}
                     </ul>

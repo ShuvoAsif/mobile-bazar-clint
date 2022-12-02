@@ -8,7 +8,7 @@ const Addvertisement = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/advertisemobiles')
+        fetch('https://mobile-resale-server-seven.vercel.app/advertisemobiles')
             .then(res => res.json())
             .then(data => setaddmobiles(data));
     }, [])
