@@ -4,8 +4,10 @@ import AllBuyer from '../Dashboard/Admin/AllBuyer/AllBuyer';
 import AllSeller from '../Dashboard/Admin/AllSeller/AllSeller';
 import ReportedItems from '../Dashboard/Admin/ReportedItems/ReportedItems';
 import MyOrder from '../Dashboard/Buyer/MyOrders/MyOrder';
+import Payment from '../Dashboard/Payment/Payment';
 import AddAProducts from '../Dashboard/Seller/AddAProduct/AddAProducts';
 import MyProducts from '../Dashboard/Seller/MyProducts/MyProducts';
+import DisplayError from '../DisplayError/DisplayError';
 import DashboardLayout from '../layout/DashboardLayout';
 import Main from '../layout/Main';
 import Blog from '../pages/Blog/Blog';
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -49,6 +52,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard/allbuyers',
@@ -74,6 +78,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/myorder',
                 element: <MyOrder></MyOrder>
             },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`)
+
+            }
 
         ]
     }

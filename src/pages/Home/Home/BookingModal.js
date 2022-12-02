@@ -17,6 +17,7 @@ const BookingModal = ({ product, setProduct }) => {
             productid: _id,
             buyerName,
             product: name,
+            resale_price,
             email,
             phone,
             location,

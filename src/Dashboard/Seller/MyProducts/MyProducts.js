@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
@@ -22,7 +21,7 @@ const MyProducts = () => {
 
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/deletemobiles/${product._id}`, {
+        fetch(`http://localhost:5000/mobile/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -32,7 +31,7 @@ const MyProducts = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(`Seller ${product.name} deleted successfully`)
+                    toast.success(`${product.name} deleted successfully`)
                 }
             })
     }
@@ -82,7 +81,7 @@ const MyProducts = () => {
                                     </div>
                                 </div></td>
                                 <td>{product.name}</td>
-                                <td>{product?.is_add !== true && <button onClick={() => handleAdvertise(product)} className='btn btn-xs btn-info'>Advertise</button>}{product?.is_add === true && <button className='btn btn-xs  btn-success'>Advertised</button>}</td>
+                                <td>{product?.is_add !== true && <button onClick={() => handleAdvertise(product)} className='btn btn-xs btn-info'>Advertise THis Item</button>}{product?.is_add === true && <button className='btn btn-xs  btn-success'>Allready Advertised</button>}</td>
                                 <td>{<button onClick={() => handleDeleteProduct(product)} className='btn btn-xs btn-error'>Delete This Product</button>}</td>
                             </tr>)
                         }

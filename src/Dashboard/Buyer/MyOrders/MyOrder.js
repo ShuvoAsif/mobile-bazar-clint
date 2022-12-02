@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import Loading from '../../../pages/Home/Shared/Loading/Loading';
 
 const MyOrder = () => {
@@ -32,10 +33,6 @@ const MyOrder = () => {
             })
     }
 
-
-    const handlePay = () => {
-
-    }
 
 
 
@@ -69,8 +66,8 @@ const MyOrder = () => {
                                     </div>
                                 </td>
                                 <td>{product.product}</td>
-                                <td>{product?.isPaid !== true && <button onClick={() => handlePay(product)} className='btn btn-xs btn-info'>Pay</button>}{product?.isPaid === true && <button className='btn btn-xs  btn-success'>Pied</button>}</td>
-                                <td>{<button onClick={() => handleDeleteProduct(product)} className='btn btn-xs btn-error'>Delete This Order</button>}</td>
+                                <td>{product?.isPaid !== true && <Link to={`/dashboard/payment/${product.productid}`}><button className='btn btn-xs btn-info'>Pay</button></Link>}{product?.isPaid === true && <button className='btn btn-xs  btn-success'>Pied</button>}</td>
+                                <td>{product?.isPaid !== true && <button onClick={() => handleDeleteProduct(product)} className='btn btn-xs btn-error'>Delete This Order</button>}{product?.isPaid === true && <button className='btn btn-xs  btn-success' disabled>Delete This Order</button>}</td>
                             </tr>)
                         }
 

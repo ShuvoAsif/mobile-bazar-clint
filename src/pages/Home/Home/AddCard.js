@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import verify from '../../../images/check.png'
 
 const AddCard = ({ addmobile, setProduct }) => {
 
-    const { image, name, seller, location, resale_price, orginal_price, use_time, posted_time, seller_mail } = addmobile;
+    const { _id, image, name, seller, location, resale_price, orginal_price, use_time, posted_time, seller_mail } = addmobile;
 
 
     const url = `http://localhost:5000/userinfo?email=${seller_mail}`;
@@ -17,6 +18,25 @@ const AddCard = ({ addmobile, setProduct }) => {
             return data;
         }
     })
+
+
+
+    const handleReport = () => {
+        fetch(`http://localhost:5000/product/${_id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Report to admin is successful.')
+                }
+            })
+
+
+    }
 
     return (
         <div>
@@ -39,7 +59,8 @@ const AddCard = ({ addmobile, setProduct }) => {
                                 {sellerinfo.verify === true && <img src={verify} alt='' />}
                             </div>
                         </div></div>
-                    <div className="card-actions justify-end">
+                    <div className="card-actions justify-between">
+                        <button onClick={handleReport} className="btn btn-error">Report</button>
                         <label
                             onClick={() => setProduct(addmobile)}
                             htmlFor="booking-modal"

@@ -8,8 +8,6 @@ const AddAProducts = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const imageHostKey = process.env.REACT_APP_Imgbb_key;
-
 
     const handleAddAProduct = event => {
 
@@ -17,7 +15,7 @@ const AddAProducts = () => {
         event.preventDefault();
         const form = event.target;
         const name = form.productName.value;
-        const catrgory = form.category.value;
+        const category_id = form.category.value;
         const condition = form.condition.value;
         const phoneNumber = form.phoneNumber.value;
         const purchaseYear = form.purchaseYear.value;
@@ -30,56 +28,44 @@ const AddAProducts = () => {
         const image = form.img.value;
 
 
-        const formData = new FormData();
-        formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-        fetch(url, {
+
+        const product = {
+            name: name,
+            seller: user?.name,
+            category_id,
+            condition,
+            phoneNumber,
+            purchaseYear,
+            location,
+            image,
+            resale_price,
+            oigial_price,
+            use_time,
+            posted_time,
+            seller_mail: user?.email,
+            description,
+            reported: false,
+            is_add: false,
+            is_sold: false
+        }
+
+        fetch('http://localhost:5000/addmobiles', {
             method: 'POST',
-            body: formData
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(product)
         })
             .then(res => res.json())
-            .then(imgData => {
-                if (imgData.success) {
-                    console.log(imgData.data.url);
-                }
+            .then(result => {
+                console.log(result);
+                toast.success(`${product.name} is added successfully`);
+                navigate('/dashboard/myproducts')
+            })
 
-                const product = {
-                    name: name,
-                    seller: user?.name,
-                    catrgory,
-                    condition,
-                    phoneNumber,
-                    purchaseYear,
-                    location,
-                    image,
-                    resale_price,
-                    oigial_price,
-                    use_time,
-                    posted_time,
-                    seller_mail: user?.email,
-                    description,
-                    reported: false
-                }
+        console.log(product)
 
-
-                /*
-                 fetch('http://localhost:5000/addmobiles', {
-                     method: 'POST',
-                     headers: {
-                         'content-type': 'application/json',
-                         authorization: `bearer ${localStorage.getItem('accessToken')}`
-                     },
-                     body: JSON.stringify(product)
-                 })
-                     .then(res => res.json())
-                     .then(result => {
-                         console.log(result);
-                         toast.success(`${product.name} is added successfully`);
-                         navigate('/dashboard/myproducts')
-                     })
-                     */
-                console.log(product)
-            });
 
 
     }
@@ -98,7 +84,7 @@ const AddAProducts = () => {
                     </select>
                     <select name='condition' className="select select-info  input-bordered w-full" required>
                         <option disabled selected>Select Condition</option>
-                        <option value="xcellent">excellent</option>
+                        <option value="excellent">excellent</option>
                         <option value="good">good</option>
                         <option value="fair">fair</option>
                     </select>
@@ -107,7 +93,7 @@ const AddAProducts = () => {
                     <input name="purchaseYear" type="text" placeholder="Year of Purchase" className="input input-ghost w-full  input-bordered" />
                     <input name="usedYear" type="text" placeholder="Used Of Years" className="input input-ghost w-full  input-bordered" required />
                     <input name="phoneNumber" type="number" placeholder="Phone Number" className="input input-ghost w-full  input-bordered" />
-                    <input name="img" type="file" placeholder="Image" className="input input-ghost w-full  input-bordered" required />
+                    <input name="img" type="link" placeholder="Image" className="input input-ghost w-full  input-bordered" required />
                     <input name="location" type="text" placeholder="Location" className="input input-ghost w-full  input-bordered" required />
                     <input name="date" type="date" placeholder="Date" className="input input-ghost w-full  input-bordered" required />
                     <textarea name="description" className="textarea textarea-bordered  h-24 w-full" placeholder="Description" required></textarea>
