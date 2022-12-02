@@ -2,7 +2,7 @@
 
 # livesite link: https://mobile-resale-dfa9a.web.app
 
-# Myproject's features and functionalities are :
+# My project's features and functionalities are :
 
 - Admin control, seller routes, buyers route
 - Advertise options for products
