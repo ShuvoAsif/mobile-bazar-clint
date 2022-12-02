@@ -15,6 +15,7 @@ import Home from '../pages/Home/Home/Home';
 import Mobiles from '../pages/Home/Home/Mobiles';
 import Login from '../pages/Login/Login';
 import SignUp from '../pages/SignUp/SignUp';
+import AdminRoute from '../PrivateRoute/AdminRoute';
 import PrivateRoute from './PrivateRoute';
 
 
@@ -56,11 +57,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/allbuyers',
-                element: <AllBuyer></AllBuyer>
+                element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
             {
                 path: '/dashboard/allsellers',
-                element: <AllSeller></AllSeller>
+                element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
                 path: '/dashboard/myproducts',
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/reporteditems',
-                element: <ReportedItems></ReportedItems>
+                element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
             },
             {
                 path: '/dashboard/addaproduct',

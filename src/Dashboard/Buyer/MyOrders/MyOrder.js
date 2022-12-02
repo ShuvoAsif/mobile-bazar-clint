@@ -1,20 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 import Loading from '../../../pages/Home/Shared/Loading/Loading';
 
 const MyOrder = () => {
+    const { user } = useContext(AuthContext);
+    const url = `http://localhost:5000/booking?email=${user.email}`;
 
     const { data: orders = [], isLoading, refetch } = useQuery({
-        queryKey: ['orderss'],
+        queryKey: ['orderss', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/booking`);
+            const res = await fetch(url);
             const data = await res.json();
-            console.log(data)
             return data;
         }
-    });
+    })
 
 
     const handleDeleteProduct = product => {
