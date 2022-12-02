@@ -1,3 +1,22 @@
+# This is a mobile phone resale eCommerce site
+
+# livesite link: https://mobile-resale-dfa9a.web.app
+
+# Myproject's features and functionalities are :
+
+- Admin control, seller routes, buyers route
+- Advertise options for products
+- Digitial online payment system
+- User friendly ui
+- Used tailwind, react, react router dom for frontend
+- Used mongodb, node.js for backend
+- Firebase login system
+
+# Admin Email: admin@gmail.com
+# Admin Password: Ab123@
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

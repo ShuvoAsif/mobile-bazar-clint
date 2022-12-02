@@ -33,7 +33,7 @@ const Navbar = () => {
 
 
     const dashboardItem = <React.Fragment>
-        {role?.role && <li><Link to="/dashboard/myorder">My Orders</Link></li>}
+        {role?.role === 'buyer' && <li><Link to="/dashboard/myorder">My Orders</Link></li>}
         {role?.role === 'seller' && <li><Link to="/dashboard/myproducts">My Products</Link></li>}
         {role?.role === 'seller' && <li><Link to="/dashboard/addaproduct">Add A Product</Link></li>}
         {role?.role === 'admin' && <li><Link to="/dashboard/allsellers">All Sellers</Link></li>}
