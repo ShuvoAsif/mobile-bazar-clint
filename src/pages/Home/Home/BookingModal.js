@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
@@ -5,6 +6,18 @@ import { AuthContext } from '../../../context/AuthProvider';
 const BookingModal = ({ product, setProduct }) => {
     const { user } = useContext(AuthContext);
     const { _id, name, seller, image, resale_price } = product;
+
+
+    const { data: users = [] } = useQuery({
+        queryKey: ['users', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`https://mobile-resale-server-seven.vercel.app/oneuser?email=${user.email}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    const role = users[0]
 
     const handleBooking = event => {
         event.preventDefault();
@@ -59,7 +72,7 @@ const BookingModal = ({ product, setProduct }) => {
                     <h3 className="text-3xl font-bold text-center text-sky-900">Seller Name: {seller}</h3>
                     <h3 className="text-3xl font-bold text-center text-sky-900">Product Price: {resale_price}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
-                        <input name="buyername" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="buyername" type="text" defaultValue={role?.name} disabled placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="buyeremail" type="email" defaultValue={user.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
                         <input name="buyerphone" type="text" placeholder="Phone Number" className="input w-full input-bordered" required />
                         <input name="buyerlocation" type="text" placeholder="Meating Location" className="input w-full input-bordered" required />

@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +8,19 @@ const AddAProducts = () => {
 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+
+
+    const { data: users = [] } = useQuery({
+        queryKey: ['users', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`https://mobile-resale-server-seven.vercel.app/oneuser?email=${user.email}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    const role = users[0]
 
 
     const handleAddAProduct = event => {
@@ -31,7 +45,7 @@ const AddAProducts = () => {
 
         const product = {
             name: name,
-            seller: user?.name,
+            seller: role?.name,
             category_id,
             condition,
             phoneNumber,
@@ -88,9 +102,9 @@ const AddAProducts = () => {
                         <option value="good">good</option>
                         <option value="fair">fair</option>
                     </select>
-                    <input name="originalPrice" type="text" placeholder="Original Price" className="input input-ghost w-full  input-bordered" required />
-                    <input name="resalePrice" type="text" placeholder="Resale Price" className="input input-ghost w-full  input-bordered" required />
-                    <input name="purchaseYear" type="text" placeholder="Year of Purchase" className="input input-ghost w-full  input-bordered" />
+                    <input name="originalPrice" type="number" placeholder="Original Price" className="input input-ghost w-full  input-bordered" required />
+                    <input name="resalePrice" type="number" placeholder="Resale Price" className="input input-ghost w-full  input-bordered" required />
+                    <input name="purchaseYear" type="number" placeholder="Year of Purchase" className="input input-ghost w-full  input-bordered" />
                     <input name="usedYear" type="text" placeholder="Used Of Years" className="input input-ghost w-full  input-bordered" required />
                     <input name="phoneNumber" type="number" placeholder="Phone Number" className="input input-ghost w-full  input-bordered" />
                     <input name="img" type="link" placeholder="Image Link" className="input input-ghost w-full  input-bordered" required />

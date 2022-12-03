@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ productinfo }) => {
 
@@ -123,6 +124,7 @@ const CheckoutForm = ({ productinfo }) => {
 
                     }
                 })
+            toast.success(`Payment is successfull`);
 
 
         }

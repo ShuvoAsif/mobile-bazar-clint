@@ -68,6 +68,7 @@ const MyProducts = () => {
                             <th>Image</th>
                             <th>Product Name</th>
                             <th>Advertise</th>
+                            <th>State</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -82,6 +83,7 @@ const MyProducts = () => {
                                 </div></td>
                                 <td>{product.name}</td>
                                 <td>{product?.is_add !== true && <button onClick={() => handleAdvertise(product)} className='btn btn-xs btn-info'>Advertise THis Item</button>}{product?.is_add === true && <button className='btn btn-xs  btn-success'>Allready Advertised</button>}</td>
+                                <td>{product?.is_sold !== true && <button className='btn btn-xs btn-info'>Unsold</button>}{product?.is_sold === true && <button className='btn btn-xs  btn-success'>Sold</button>}</td>
                                 <td>{<button onClick={() => handleDeleteProduct(product)} className='btn btn-xs btn-error'>Delete This Product</button>}</td>
                             </tr>)
                         }
