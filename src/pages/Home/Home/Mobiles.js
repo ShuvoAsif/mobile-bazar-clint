@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import PrivateRoute from '../../../Routes/PrivateRoute';
 import BookingModal from './BookingModal';
 import MobileCard from './MobileCard';
 
@@ -23,10 +24,10 @@ const Mobiles = () => {
             </div>
             {
                 product &&
-                <BookingModal
+                <PrivateRoute><BookingModal
                     setProduct={setProduct}
                     product={product}
-                ></BookingModal>
+                ></BookingModal></PrivateRoute>
             }
         </section>
     );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PrivateRoute from '../../../Routes/PrivateRoute';
 import AddCard from './AddCard';
 import BookingModal from './BookingModal';
 
@@ -38,10 +39,10 @@ const Addvertisement = () => {
                 </div>
                 {
                     product &&
-                    <BookingModal
+                    <PrivateRoute><BookingModal
                         setProduct={setProduct}
                         product={product}
-                    ></BookingModal>
+                    ></BookingModal></PrivateRoute>
                 }
             </div >
         </section>

@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import verify from '../../../images/check.png'
+import PrivateRoute from '../../../Routes/PrivateRoute';
 
 const AddCard = ({ addmobile, setProduct }) => {
 

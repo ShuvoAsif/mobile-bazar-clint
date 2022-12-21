@@ -8,6 +8,7 @@ const BookingModal = ({ product, setProduct }) => {
     const { _id, name, seller, image, resale_price } = product;
 
 
+
     const { data: users = [] } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
